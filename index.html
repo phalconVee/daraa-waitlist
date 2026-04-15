@@ -237,10 +237,13 @@
   </div>
 </footer>
 
+<script src="env.js"></script>
 <script>
 /* ============================================================
    CONFIG — EDIT THESE BEFORE DEPLOYING
    ============================================================ */
+
+const ENV = window.__ENV__ || {};
 
 const CONFIG = {
   // Total spots available in the founding pilot
@@ -251,7 +254,7 @@ const CONFIG = {
   //   - Google Apps Script webhook URL
   //   - Your own API endpoint
   // If left empty, form submissions are stored locally only (for testing).
-  SUBMIT_URL: "https://formspree.io/f/maqanzgv",
+  SUBMIT_URL: ENV.SUBMIT_URL || "",
 
   // ---------- LIVE COUNTER ----------
   // Option A (simplest): set SPOTS_TAKEN manually. Each time a salon
@@ -267,8 +270,8 @@ const CONFIG = {
   // ---------- ANALYTICS (PostHog) ----------
   // Get these at https://posthog.com → Project settings → Project API key.
   // Leave POSTHOG_KEY empty to disable analytics entirely (useful in dev).
-  POSTHOG_KEY: "phc_yAFjbSzCk5ZK7xfmZBh6bgUcePkDWFfYRnxueVKjryAN",
-  POSTHOG_HOST: "https://us.i.posthog.com", // use https://eu.i.posthog.com for EU cloud
+  POSTHOG_KEY: ENV.POSTHOG_KEY || "",
+  POSTHOG_HOST: ENV.POSTHOG_HOST || "https://us.i.posthog.com", // use https://eu.i.posthog.com for EU cloud
 };
 
 /* ============================================================
