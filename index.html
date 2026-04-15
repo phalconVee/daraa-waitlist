@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daraa</title>
+<meta name="description" content="Daraa helps your stylists sell more take-home product, without selling harder.">
+<meta name="theme-color" content="#F04406">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'><path fill-rule='evenodd' clip-rule='evenodd' d='M38.4742 8.2633L29.7738 10.6239C28.4436 10.9855 18.0842 13.7957 15.7999 21.0353C3.5952 18.3356 2.504 0 22.6879 0H40.6751C40.2413 2.9905 39.5076 5.746 38.4742 8.2633ZM15.7999 21.0353C31.7789 24.5698 37.6633 10.2387 38.4742 8.2633L49.6867 5.2213C50.0184 7.9478 52.7674 30.5573 33.4862 35.1487C16.4449 39.2068 14.2801 25.8489 15.7999 21.0353Z' fill='%23F04406'/></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="wordmark" href="/" aria-label="Daraa home">
+    <svg viewBox="0 0 179 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M38.4742 22.2633L29.7738 24.6239C28.4436 24.9855 18.0842 27.7957 15.7999 35.0353C3.5952 32.3356 2.50404 14 22.6879 14H40.6751C40.2413 16.9905 39.5076 19.746 38.4742 22.2633ZM15.7999 35.0353C31.7789 38.5698 37.6633 24.2387 38.4742 22.2633L49.6867 19.2213C50.0184 21.9478 52.7674 44.5573 33.4862 49.1487C16.4449 53.2068 14.2801 39.8489 15.7999 35.0353Z" fill="#F04406"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M160.006 45.0294C158.185 45.0294 156.692 44.78 155.525 44.2812C154.359 43.7824 153.491 43.1194 152.922 42.2921C152.353 41.465 152.068 40.5526 152.068 39.5551C152.068 37.8763 152.837 36.5137 154.373 35.4675C155.909 34.4213 158.214 33.8981 161.287 33.8981H166.664V33.4602C166.664 32.2193 166.251 31.3069 165.426 30.723C164.601 30.1391 163.577 29.847 162.354 29.847C161.244 29.847 160.277 30.0721 159.451 30.5222C158.626 30.9723 158.114 31.6354 157.915 32.5113H152.581C152.723 31.1975 153.242 30.0539 154.138 29.0806C155.034 28.1075 156.194 27.3593 157.616 26.8361C159.039 26.3131 160.632 26.0515 162.396 26.0515C165.412 26.0515 167.787 26.6963 169.523 27.9857C171.259 29.2753 172.126 31.1001 172.126 33.4602V44.7204H167.475L166.963 41.6717C166.337 42.645 165.462 43.4479 164.338 44.0805C163.214 44.7131 161.77 45.0294 160.006 45.0294ZM161.244 41.3797C162.809 41.3797 164.025 40.9418 164.893 40.0659C165.76 39.1901 166.308 38.1072 166.536 36.8178H161.884C160.433 36.8178 159.394 37.0428 158.769 37.4931C158.143 37.9432 157.83 38.4966 157.83 39.1534C157.83 39.8591 158.143 40.4066 158.769 40.7958C159.394 41.1852 160.22 41.3797 161.244 41.3797Z" fill="#F04406"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M135.851 44.9464C134.031 44.9464 132.537 44.697 131.37 44.1982C130.204 43.6994 129.336 43.0364 128.767 42.2091C128.198 41.382 127.914 40.4696 127.914 39.472C127.914 37.7932 128.682 36.4307 130.218 35.3845C131.755 34.3383 134.059 33.8151 137.132 33.8151H142.509V33.3772C142.509 32.1363 142.096 31.2239 141.271 30.64C140.446 30.056 139.422 29.764 138.199 29.764C137.089 29.764 136.122 29.9891 135.297 30.4392C134.472 30.8893 133.959 31.5524 133.76 32.4283H128.426C128.568 31.1145 129.087 29.9709 129.983 28.9976C130.88 28.0245 132.039 27.2763 133.462 26.7531C134.884 26.2301 136.477 25.9685 138.241 25.9685C141.257 25.9685 143.633 26.6133 145.368 27.9027C147.104 29.1923 147.971 31.0171 147.971 33.3772V44.6374H143.32L142.808 41.5887C142.182 42.562 141.307 43.3649 140.183 43.9975C139.059 44.6301 137.615 44.9464 135.851 44.9464ZM137.089 41.2967C138.654 41.2967 139.87 40.8588 140.738 39.9829C141.606 39.1071 142.153 38.0242 142.381 36.7348H137.729C136.278 36.7348 135.24 36.9598 134.614 37.41C133.988 37.8601 133.675 38.4136 133.675 39.0704C133.675 39.7761 133.988 40.3236 134.614 40.7128C135.24 41.1022 136.065 41.2967 137.089 41.2967Z" fill="#F04406"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M112.479 44.7203V26.3264H117.344L117.856 30.1284C118.625 28.9696 119.67 28.0463 120.993 27.3584C122.316 26.6704 123.874 26.3264 125.666 26.3264V31.2146H124.13C122.935 31.2146 121.868 31.3714 120.929 31.6852C119.99 31.999 119.257 32.5422 118.731 33.3146C118.205 34.0871 117.942 35.1613 117.942 36.5371V44.7203H112.479Z" fill="#F04406"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M96.2624 45.0294C94.4415 45.0294 92.9478 44.78 91.7813 44.2812C90.6148 43.7824 89.747 43.1194 89.178 42.2921C88.609 41.465 88.3245 40.5526 88.3245 39.5551C88.3245 37.8763 89.0927 36.5137 90.6291 35.4675C92.1654 34.4213 94.4698 33.8981 97.5427 33.8981H102.92V33.4602C102.92 32.2193 102.507 31.3069 101.682 30.723C100.857 30.1391 99.8328 29.847 98.6094 29.847C97.4998 29.847 96.5327 30.0721 95.7075 30.5222C94.8825 30.9723 94.3703 31.6354 94.1711 32.5113H88.8367C88.9789 31.1975 89.4982 30.0539 90.3944 29.0806C91.2905 28.1075 92.4498 27.3593 93.8725 26.8361C95.295 26.3131 96.8882 26.0515 98.6522 26.0515C101.668 26.0515 104.044 26.6963 105.779 27.9857C107.515 29.2753 108.382 31.1001 108.382 33.4602V44.7204H103.771L103.219 41.6717C102.593 42.645 101.718 43.4479 100.594 44.0805C99.4702 44.7131 98.0262 45.0294 96.2624 45.0294ZM97.4998 41.3797C99.0647 41.3797 100.281 40.9418 101.149 40.0659C102.017 39.1901 102.564 38.1072 102.792 36.8178H98.14C96.6891 36.8178 95.6506 37.0428 95.0247 37.4931C94.3988 37.9432 94.0859 38.4966 94.0859 39.1534C94.0859 39.8591 94.3988 40.4066 95.0247 40.7958C95.6506 41.1852 96.4758 41.3797 97.4998 41.3797Z" fill="#F04406"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M60.5564 44.7204V19.3193H70.7561C74.2555 19.3193 77.1361 19.8455 79.3981 20.8979C81.6598 21.9503 83.3386 23.4259 84.4339 25.3249C85.5291 27.224 86.0768 29.4556 86.0768 32.0199C86.0768 34.5841 85.5291 36.8158 84.4339 38.7148C83.3386 40.6138 81.6598 42.0895 79.3981 43.1418C77.1361 44.1942 74.2555 44.7204 70.7561 44.7204H60.5564ZM66.0189 40.7288H70.5C73.0038 40.7288 74.9809 40.384 76.432 39.6947C77.8831 39.0052 78.9214 38.0133 79.5473 36.719C80.1734 35.4248 80.4863 33.8584 80.4863 32.0199C80.4863 30.2055 80.1734 28.6452 79.5473 27.3389C78.9214 26.0326 77.8831 25.0286 76.432 24.3269C74.9809 23.6255 73.0038 23.2747 70.5 23.2747H66.0189V40.7288Z" fill="#F04406"/>
+    </svg>
+  </a>
+  <div class="nav-right">For salons and stylists</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <span class="eyebrow">Founding pilot · Atlanta · Stylists + salon owners</span>
+    <h1 id="hero-headline">You already know what works for your clients. <span class="accent" id="hero-accent">Daraa helps you send it home with them.</span></h1>
+    <p class="lede" id="hero-lede">
+      A 90-second tool you use right at the chair. Enter your client's concern —
+      Daraa builds a personalized take-home routine from the products you (or your salon) already stock,
+      branded with your name or logo and texted straight to your client.
+    </p>
+    <div class="meta-row">
+      <div><strong>$79/mo</strong> per chair or location</div>
+      <div><strong>$1</strong> to reserve your spot</div>
+      <div><strong>24 months</strong> of locked pricing</div>
+    </div>
+  </div>
+
+  <!-- FORM CARD -->
+  <div class="form-card">
+    <span class="counter-pill"><span class="dot"></span><span id="pill-text">LIMITED TO 5</span></span>
+
+    <!-- INITIAL FORM STATE -->
+    <div class="form-state" id="form-state">
+      <h2>Reserve your founding spot</h2>
+      <p class="sub">Whether you're a solo stylist, booth renter, or running a team — we'll follow up within 24 hours.</p>
+
+      <div class="spots-label">
+        <span>Spots claimed</span>
+        <span><strong id="count-display">0</strong> of 5</span>
+      </div>
+      <div class="spots" id="spots-bar">
+        <div class="spot" data-i="0"></div>
+        <div class="spot" data-i="1"></div>
+        <div class="spot" data-i="2"></div>
+        <div class="spot" data-i="3"></div>
+        <div class="spot" data-i="4"></div>
+      </div>
+
+      <form id="waitlist-form" novalidate>
+        <label for="owner">Your name</label>
+        <input type="text" id="owner" name="owner" required placeholder="Full name">
+
+        <label for="salon">Business name <span style="color:var(--mute);font-weight:400">(or your own name if solo)</span></label>
+        <input type="text" id="salon" name="salon" required placeholder="e.g., Amara Skin Studio, or Jamie's Chair">
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required placeholder="you@yourbusiness.com">
+
+        <label for="phone">Phone (mobile)</label>
+        <input type="tel" id="phone" name="phone" required placeholder="(404) 555-0199">
+
+        <label for="stylists">What's your setup?</label>
+        <select id="stylists" name="stylists" required>
+          <option value="">Select...</option>
+          <option value="solo">Just me — solo stylist / booth renter</option>
+          <option value="2-3">Small team — 2–3 stylists</option>
+          <option value="4-8">Salon — 4–8 stylists</option>
+          <option value="9-15">Salon — 9–15 stylists</option>
+          <option value="16+">Multi-location — 16+ stylists</option>
+        </select>
+
+        <button type="submit" class="btn" id="submit-btn" data-default-label="Reserve my spot for $1 →">Reserve my spot for $1 →</button>
+        <p class="form-footer">No charge today — $1 is refundable until launch.</p>
+        <p class="error-msg" id="error-msg"></p>
+      </form>
+    </div>
+
+    <!-- SUCCESS STATE -->
+    <div class="success-state" id="success-state">
+      <span style="display:inline-block; width: 56px; height: 56px; background: var(--berry); border-radius: 50%; line-height: 56px; color: white; font-size: 28px; font-weight: 700;">✓</span>
+      <div class="big-num"><span id="spot-num">1</span><span class="of"> / 5</span></div>
+      <h2 style="margin: 0 0 12px;">You're in.</h2>
+      <p class="success-sub" id="success-sub">
+        Thank you — your founding salon spot is reserved. We'll email you within 24 hours
+        with next steps.
+      </p>
+      <div class="next-steps">
+        <h5>What happens next</h5>
+        <ol>
+          <li>You get a confirmation email within 24 hours.</li>
+          <li>We schedule a 20-minute onboarding call this week.</li>
+          <li>Your $1 deposit locks $79/month pricing for 24 months at launch.</li>
+          <li>Launch pilot begins in the next 60 days.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+  <h3>How it works, right at your chair</h3>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h4>One-minute intake</h4>
+      <p>You tap in your client's concern — breakage, breakout, dryness, scalp — right from your phone. Takes under 60 seconds while you're finishing the style.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h4>Matched to what you stock</h4>
+      <p>Daraa recommends a 3–5 product routine from the inventory you already carry, ranked by how well the ingredients match your client's concern.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h4>Branded leave-behind</h4>
+      <p>Your client gets a text with your name or your salon's logo, the routine, and exactly when to use each product — before she leaves the chair.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="section">
+  <h3>Why stylists and salons are piloting Daraa</h3>
+  <div class="benefits">
+    <div class="benefit">
+      <span class="arrow">→</span>
+      <div>
+        <h5>You sell more take-home product</h5>
+        <p>Pilot stylists see 2–3× more take-home product per client visit. The routine is in writing, your client reorders without you chasing.</p>
+      </div>
+    </div>
+    <div class="benefit">
+      <span class="arrow">→</span>
+      <div>
+        <h5>You look like the expert you are</h5>
+        <p>Ingredient reasoning on every recommendation. You explain the <em>why</em> behind each product — not just the what.</p>
+      </div>
+    </div>
+    <div class="benefit">
+      <span class="arrow">→</span>
+      <div>
+        <h5>Your clients come back more often</h5>
+        <p>Automatic 2 and 6-week routine check-ins bring your clients back to your chair — and to your retail.</p>
+      </div>
+    </div>
+    <div class="benefit">
+      <span class="arrow">→</span>
+      <div>
+        <h5>Zero friction to start</h5>
+        <p>Works in any browser on your phone. No app to install, no app for your client either. You're live in 15 minutes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OWNER SECTION -->
+<section class="section">
+  <div class="owner-band">
+    <div class="owner-band__copy">
+      <span class="eyebrow" style="background: rgba(255,255,255,0.14); color:#fff;">For salon owners</span>
+      <h3 style="color:#fff; text-align:left; margin:14px 0 14px; font-size:30px;">Running a team of 3 or more? Daraa scales with you.</h3>
+      <p style="color:var(--cream); margin:0 0 22px; max-width: 540px;">
+        Your stylists keep the in-chair experience above — you get visibility, shared inventory, and the retail-attach numbers you've been guessing at.
+      </p>
+      <div class="owner-benefits">
+        <div class="owner-item"><strong>Shared inventory</strong><span>Upload stock once. Every stylist recommends from the same source of truth.</span></div>
+        <div class="owner-item"><strong>Stylist dashboard</strong><span>Retail-attach rate by stylist. Spot your top sellers, coach the rest.</span></div>
+        <div class="owner-item"><strong>Client demand data</strong><span>Top client concerns by month — so you restock what's actually moving.</span></div>
+        <div class="owner-item"><strong>POS-ready</strong><span>CSV upload day one. Shopify and Square sync on the Core plan.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <h3>Questions we hear most</h3>
+  <details>
+    <summary>I'm a solo stylist / booth renter — is this for me?</summary>
+    <p>Yes. Daraa works for a single chair just as well as a 15-stylist shop. The $79/month covers one chair, or one location. If you're renting a booth, you're probably our best-fit early user — you keep 100% of the retail uplift.</p>
+  </details>
+  <details>
+    <summary>What exactly does my $1 get me?</summary>
+    <p>A reserved spot as one of our five founding Atlanta pilot users — solo stylists and salons alike. When we launch in the next 60 days, your pricing is locked at $79/month for 24 months. Change your mind before then, we refund the dollar.</p>
+  </details>
+  <details>
+    <summary>Do I need to install anything?</summary>
+    <p>No. Daraa is a website, not an app. You log in once on your phone via a text link and stay logged in. Your clients don't install anything either — they just get a text.</p>
+  </details>
+  <details>
+    <summary>How does Daraa know what products I stock?</summary>
+    <p>You upload a simple spreadsheet of your inventory (SKU, product, price) — takes five minutes the first time. We match it to our ingredient database. Updates are weekly via re-upload, or automatic if you're on Shopify or Square (on the Core plan).</p>
+  </details>
+  <details>
+    <summary>What if the recommendation is wrong?</summary>
+    <p>You always have the final say. Daraa generates the routine in seconds; you review, swap, or approve before it's sent. Nothing reaches your client without your sign-off.</p>
+  </details>
+  <details>
+    <summary>Can I cancel?</summary>
+    <p>Anytime, no questions asked. Your founding pricing only applies while your subscription is active.</p>
+  </details>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div style="max-width: 720px; margin: 0 auto;">
+    <div class="wordmark wordmark--footer" style="justify-content: center; margin-bottom: 14px;" aria-label="Daraa">
+      <svg viewBox="0 0 179 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M38.4742 22.2633L29.7738 24.6239C28.4436 24.9855 18.0842 27.7957 15.7999 35.0353C3.5952 32.3356 2.50404 14 22.6879 14H40.6751C40.2413 16.9905 39.5076 19.746 38.4742 22.2633ZM15.7999 35.0353C31.7789 38.5698 37.6633 24.2387 38.4742 22.2633L49.6867 19.2213C50.0184 21.9478 52.7674 44.5573 33.4862 49.1487C16.4449 53.2068 14.2801 39.8489 15.7999 35.0353Z" fill="#F04406"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M160.006 45.0294C158.185 45.0294 156.692 44.78 155.525 44.2812C154.359 43.7824 153.491 43.1194 152.922 42.2921C152.353 41.465 152.068 40.5526 152.068 39.5551C152.068 37.8763 152.837 36.5137 154.373 35.4675C155.909 34.4213 158.214 33.8981 161.287 33.8981H166.664V33.4602C166.664 32.2193 166.251 31.3069 165.426 30.723C164.601 30.1391 163.577 29.847 162.354 29.847C161.244 29.847 160.277 30.0721 159.451 30.5222C158.626 30.9723 158.114 31.6354 157.915 32.5113H152.581C152.723 31.1975 153.242 30.0539 154.138 29.0806C155.034 28.1075 156.194 27.3593 157.616 26.8361C159.039 26.3131 160.632 26.0515 162.396 26.0515C165.412 26.0515 167.787 26.6963 169.523 27.9857C171.259 29.2753 172.126 31.1001 172.126 33.4602V44.7204H167.475L166.963 41.6717C166.337 42.645 165.462 43.4479 164.338 44.0805C163.214 44.7131 161.77 45.0294 160.006 45.0294ZM161.244 41.3797C162.809 41.3797 164.025 40.9418 164.893 40.0659C165.76 39.1901 166.308 38.1072 166.536 36.8178H161.884C160.433 36.8178 159.394 37.0428 158.769 37.4931C158.143 37.9432 157.83 38.4966 157.83 39.1534C157.83 39.8591 158.143 40.4066 158.769 40.7958C159.394 41.1852 160.22 41.3797 161.244 41.3797Z" fill="#F04406"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M135.851 44.9464C134.031 44.9464 132.537 44.697 131.37 44.1982C130.204 43.6994 129.336 43.0364 128.767 42.2091C128.198 41.382 127.914 40.4696 127.914 39.472C127.914 37.7932 128.682 36.4307 130.218 35.3845C131.755 34.3383 134.059 33.8151 137.132 33.8151H142.509V33.3772C142.509 32.1363 142.096 31.2239 141.271 30.64C140.446 30.056 139.422 29.764 138.199 29.764C137.089 29.764 136.122 29.9891 135.297 30.4392C134.472 30.8893 133.959 31.5524 133.76 32.4283H128.426C128.568 31.1145 129.087 29.9709 129.983 28.9976C130.88 28.0245 132.039 27.2763 133.462 26.7531C134.884 26.2301 136.477 25.9685 138.241 25.9685C141.257 25.9685 143.633 26.6133 145.368 27.9027C147.104 29.1923 147.971 31.0171 147.971 33.3772V44.6374H143.32L142.808 41.5887C142.182 42.562 141.307 43.3649 140.183 43.9975C139.059 44.6301 137.615 44.9464 135.851 44.9464ZM137.089 41.2967C138.654 41.2967 139.87 40.8588 140.738 39.9829C141.606 39.1071 142.153 38.0242 142.381 36.7348H137.729C136.278 36.7348 135.24 36.9598 134.614 37.41C133.988 37.8601 133.675 38.4136 133.675 39.0704C133.675 39.7761 133.988 40.3236 134.614 40.7128C135.24 41.1022 136.065 41.2967 137.089 41.2967Z" fill="#F04406"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M112.479 44.7203V26.3264H117.344L117.856 30.1284C118.625 28.9696 119.67 28.0463 120.993 27.3584C122.316 26.6704 123.874 26.3264 125.666 26.3264V31.2146H124.13C122.935 31.2146 121.868 31.3714 120.929 31.6852C119.99 31.999 119.257 32.5422 118.731 33.3146C118.205 34.0871 117.942 35.1613 117.942 36.5371V44.7203H112.479Z" fill="#F04406"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M96.2624 45.0294C94.4415 45.0294 92.9478 44.78 91.7813 44.2812C90.6148 43.7824 89.747 43.1194 89.178 42.2921C88.609 41.465 88.3245 40.5526 88.3245 39.5551C88.3245 37.8763 89.0927 36.5137 90.6291 35.4675C92.1654 34.4213 94.4698 33.8981 97.5427 33.8981H102.92V33.4602C102.92 32.2193 102.507 31.3069 101.682 30.723C100.857 30.1391 99.8328 29.847 98.6094 29.847C97.4998 29.847 96.5327 30.0721 95.7075 30.5222C94.8825 30.9723 94.3703 31.6354 94.1711 32.5113H88.8367C88.9789 31.1975 89.4982 30.0539 90.3944 29.0806C91.2905 28.1075 92.4498 27.3593 93.8725 26.8361C95.295 26.3131 96.8882 26.0515 98.6522 26.0515C101.668 26.0515 104.044 26.6963 105.779 27.9857C107.515 29.2753 108.382 31.1001 108.382 33.4602V44.7204H103.771L103.219 41.6717C102.593 42.645 101.718 43.4479 100.594 44.0805C99.4702 44.7131 98.0262 45.0294 96.2624 45.0294ZM97.4998 41.3797C99.0647 41.3797 100.281 40.9418 101.149 40.0659C102.017 39.1901 102.564 38.1072 102.792 36.8178H98.14C96.6891 36.8178 95.6506 37.0428 95.0247 37.4931C94.3988 37.9432 94.0859 38.4966 94.0859 39.1534C94.0859 39.8591 94.3988 40.4066 95.0247 40.7958C95.6506 41.1852 96.4758 41.3797 97.4998 41.3797Z" fill="#F04406"/>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M60.5564 44.7204V19.3193H70.7561C74.2555 19.3193 77.1361 19.8455 79.3981 20.8979C81.6598 21.9503 83.3386 23.4259 84.4339 25.3249C85.5291 27.224 86.0768 29.4556 86.0768 32.0199C86.0768 34.5841 85.5291 36.8158 84.4339 38.7148C83.3386 40.6138 81.6598 42.0895 79.3981 43.1418C77.1361 44.1942 74.2555 44.7204 70.7561 44.7204H60.5564ZM66.0189 40.7288H70.5C73.0038 40.7288 74.9809 40.384 76.432 39.6947C77.8831 39.0052 78.9214 38.0133 79.5473 36.719C80.1734 35.4248 80.4863 33.8584 80.4863 32.0199C80.4863 30.2055 80.1734 28.6452 79.5473 27.3389C78.9214 26.0326 77.8831 25.0286 76.432 24.3269C74.9809 23.6255 73.0038 23.2747 70.5 23.2747H66.0189V40.7288Z" fill="#F04406"/>
+      </svg>
+    </div>
+    <div style="margin-top: 10px; opacity: 0.7;">© 2026 Daraa</div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   CONFIG — EDIT THESE BEFORE DEPLOYING
+   ============================================================ */
+
+const CONFIG = {
+  // Total spots available in the founding pilot
+  TOTAL_SPOTS: 5,
+
+  // Form submission endpoint. Options:
+  //   - Formspree:  https://formspree.io/f/YOUR_ID
+  //   - Google Apps Script webhook URL
+  //   - Your own API endpoint
+  // If left empty, form submissions are stored locally only (for testing).
+  SUBMIT_URL: "https://formspree.io/f/maqanzgv",
+
+  // ---------- LIVE COUNTER ----------
+  // Option A (simplest): set SPOTS_TAKEN manually. Each time a salon
+  // deposits, edit this number and redeploy. Fine for a 5-spot pilot
+  // validated over 14 days.
+  SPOTS_TAKEN: 0,
+
+  // Option B (live across users): point COUNTER_URL at a JSON endpoint
+  // that returns { "claimed": N }. Google Apps Script works well here —
+  // see the setup instructions in Daraa_Waitlist_README.md.
+  COUNTER_URL: "",
+
+  // ---------- ANALYTICS (PostHog) ----------
+  // Get these at https://posthog.com → Project settings → Project API key.
+  // Leave POSTHOG_KEY empty to disable analytics entirely (useful in dev).
+  POSTHOG_KEY: "phc_yAFjbSzCk5ZK7xfmZBh6bgUcePkDWFfYRnxueVKjryAN",
+  POSTHOG_HOST: "https://us.i.posthog.com", // use https://eu.i.posthog.com for EU cloud
+};
+
+/* ============================================================
+   A/B EXPERIMENTS — define variants here.
+   Each experiment: { name, weights (optional), variants: { key: applyFn } }.
+   - Variant assignment is sticky per visitor (stored in localStorage).
+   - Variant name is sent as a super-property to PostHog so every event
+     is automatically sliced by variant.
+   - Override in the URL: ?exp_headline=B to force a variant for QA.
+   ============================================================ */
+
+const EXPERIMENTS = {
+  // Tests the hero framing. Control is expertise-led ("You already know what works").
+  // Variant B is revenue/outcome-led and bolder.
+  headline: {
+    variants: {
+      A: () => { /* control — expertise framing */ },
+      B: () => {
+        const h = document.getElementById("hero-headline");
+        const a = document.getElementById("hero-accent");
+        if (h && a) {
+          h.childNodes[0].nodeValue = "Turn every appointment into a take-home sale. ";
+          a.textContent = "Without selling harder.";
+        }
+      },
+    },
+  },
+  // Tests the eyebrow audience signal — does calling out "stylists + owners" explicitly
+  // help, or does a simpler positioning convert better?
+  audience: {
+    variants: {
+      A: () => { /* control — "Stylists + salon owners" in eyebrow */ },
+      B: () => {
+        const eb = document.querySelector(".eyebrow");
+        if (eb) eb.textContent = "Founding pilot · Atlanta beauty pros";
+      },
+    },
+  },
+  // Tests commitment-framing on the primary CTA button.
+  cta: {
+    variants: {
+      A: () => { /* control */ },
+      B: () => {
+        const btn = document.getElementById("submit-btn");
+        if (btn) btn.textContent = "Claim my founding spot →";
+        const btnLabel = document.querySelector(".form-footer");
+        if (btnLabel) btnLabel.textContent = "$1 refundable deposit locks founding pricing.";
+      },
+    },
+  },
+  pricing: {
+    variants: {
+      A: () => { /* control */ },
+      B: () => {
+        document.querySelector(".meta-row").firstElementChild
+          .innerHTML = "<strong>$99/mo</strong> per location";
+      },
+    },
+  },
+};
+
+/* ============================================================
+   LOGIC — no need to edit below this line unless you're customizing.
+   ============================================================ */
+
+let currentCount = CONFIG.SPOTS_TAKEN;
+
+/* ---------- Analytics (PostHog loader) ---------- */
+function loadPostHog() {
+  if (!CONFIG.POSTHOG_KEY) return;
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug getPageViewId captureTraceFeedback captureTraceMetric".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  window.posthog.init(CONFIG.POSTHOG_KEY, {
+    api_host: CONFIG.POSTHOG_HOST,
+    person_profiles: "identified_only",
+    capture_pageview: true,
+    capture_pageleave: true,
+  });
+}
+
+function track(event, props) {
+  if (window.posthog && typeof window.posthog.capture === "function") {
+    window.posthog.capture(event, props || {});
+  } else {
+    console.log("[track:stub]", event, props || {});
+  }
+}
+
+/* ---------- A/B variant assignment ---------- */
+const VARIANT_STORAGE_KEY = "daraa_variants";
+
+function getStoredVariants() {
+  try { return JSON.parse(localStorage.getItem(VARIANT_STORAGE_KEY) || "{}"); }
+  catch (e) { return {}; }
+}
+
+function saveVariants(v) {
+  try { localStorage.setItem(VARIANT_STORAGE_KEY, JSON.stringify(v)); } catch (e) {}
+}
+
+function pickVariant(experimentName, experiment) {
+  const keys = Object.keys(experiment.variants);
+  // Hash visitor + experiment for stable assignment even if storage is cleared.
+  const seed = (localStorage.getItem("daraa_vid") ||
+    (() => { const v = Math.random().toString(36).slice(2); localStorage.setItem("daraa_vid", v); return v; })()) + experimentName;
+  let h = 0;
+  for (let i = 0; i < seed.length; i++) h = ((h << 5) - h + seed.charCodeAt(i)) | 0;
+  return keys[Math.abs(h) % keys.length];
+}
+
+function applyExperiments() {
+  const params = new URLSearchParams(window.location.search);
+  const stored = getStoredVariants();
+  const assigned = {};
+
+  Object.keys(EXPERIMENTS).forEach((name) => {
+    const exp = EXPERIMENTS[name];
+    const override = params.get("exp_" + name);
+    let variant = override && exp.variants[override] ? override
+                : stored[name] && exp.variants[stored[name]] ? stored[name]
+                : pickVariant(name, exp);
+    assigned[name] = variant;
+    try { exp.variants[variant](); } catch (e) { console.warn("variant apply failed", name, variant, e); }
+  });
+
+  saveVariants(assigned);
+
+  // Register variants as super-properties so every event is sliced by them.
+  if (window.posthog && typeof window.posthog.register === "function") {
+    const superProps = {};
+    Object.keys(assigned).forEach(k => superProps["variant_" + k] = assigned[k]);
+    window.posthog.register(superProps);
+  }
+  track("variant_assigned", assigned);
+  return assigned;
+}
+
+async function fetchLiveCount() {
+  if (!CONFIG.COUNTER_URL) return CONFIG.SPOTS_TAKEN;
+  try {
+    const res = await fetch(CONFIG.COUNTER_URL);
+    const data = await res.json();
+    return typeof data.claimed === "number" ? data.claimed : CONFIG.SPOTS_TAKEN;
+  } catch (e) {
+    console.warn("Counter fetch failed, using fallback:", e);
+    return CONFIG.SPOTS_TAKEN;
+  }
+}
+
+function renderCounter(n) {
+  currentCount = Math.min(n, CONFIG.TOTAL_SPOTS);
+  document.getElementById("count-display").textContent = currentCount;
+
+  const spotsBar = document.querySelectorAll(".spot");
+  spotsBar.forEach((s, i) => {
+    if (i < currentCount) s.classList.add("taken");
+    else s.classList.remove("taken");
+  });
+
+  // Update pill
+  const remaining = CONFIG.TOTAL_SPOTS - currentCount;
+  const pill = document.getElementById("pill-text");
+  if (remaining <= 0) {
+    pill.textContent = "WAITLIST OPEN";
+    const btn = document.getElementById("submit-btn");
+    if (btn) btn.textContent = "Join the waitlist →";
+  } else if (remaining === 1) {
+    pill.textContent = "1 SPOT LEFT";
+  } else {
+    pill.textContent = remaining + " SPOTS LEFT";
+  }
+}
+
+async function submitForm(data) {
+  if (!CONFIG.SUBMIT_URL) {
+    console.log("[dry-run] submission:", data);
+    return { ok: true };
+  }
+  const res = await fetch(CONFIG.SUBMIT_URL, {
+    method: "POST",
+    headers: { "Accept": "application/json", "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  return { ok: res.ok };
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  loadPostHog();
+  applyExperiments();
+
+  const live = await fetchLiveCount();
+  renderCounter(live);
+
+  const form = document.getElementById("waitlist-form");
+  const errEl = document.getElementById("error-msg");
+
+  // --- Event tracking: form-start (fires once, on first field focus) ---
+  let formStarted = false;
+  form.querySelectorAll("input, select").forEach((el) => {
+    el.addEventListener("focus", () => {
+      if (!formStarted) {
+        formStarted = true;
+        track("form_start", { first_field: el.name || el.id });
+      }
+    }, { once: false });
+  });
+
+  // --- Event tracking: scroll milestones + scroll-to-form ---
+  const milestones = [25, 50, 75, 100];
+  const hit = new Set();
+  let reachedForm = false;
+  window.addEventListener("scroll", () => {
+    const pct = Math.round((window.scrollY + window.innerHeight) / document.body.scrollHeight * 100);
+    milestones.forEach(m => { if (pct >= m && !hit.has(m)) { hit.add(m); track("scroll_depth", { percent: m }); } });
+    if (!reachedForm) {
+      const card = document.querySelector(".form-card");
+      if (card && card.getBoundingClientRect().top < window.innerHeight) {
+        reachedForm = true;
+        track("form_viewed");
+      }
+    }
+  }, { passive: true });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    errEl.classList.remove("show");
+
+    const data = {
+      salon: document.getElementById("salon").value.trim(),
+      owner: document.getElementById("owner").value.trim(),
+      email: document.getElementById("email").value.trim(),
+      phone: document.getElementById("phone").value.trim(),
+      stylists: document.getElementById("stylists").value,
+      timestamp: new Date().toISOString(),
+    };
+
+    if (!data.salon || !data.owner || !data.email || !data.phone || !data.stylists) {
+      errEl.textContent = "Please fill in every field.";
+      errEl.classList.add("show");
+      track("form_validation_error", { stylists: data.stylists || null });
+      return;
+    }
+
+    track("form_submit_attempt", { stylists: data.stylists });
+    if (window.posthog && typeof window.posthog.identify === "function") {
+      window.posthog.identify(data.email, { salon: data.salon, owner: data.owner, stylists: data.stylists });
+    }
+
+    const btn = document.getElementById("submit-btn");
+    btn.disabled = true;
+    btn.textContent = "Reserving…";
+
+    try {
+      const result = await submitForm(data);
+      if (!result.ok) throw new Error("Submission failed");
+
+      // Optimistic local increment — real source of truth is CONFIG.SPOTS_TAKEN
+      // or your live counter endpoint.
+      const newSpot = Math.min(currentCount + 1, CONFIG.TOTAL_SPOTS);
+      document.getElementById("spot-num").textContent = newSpot;
+
+      if (newSpot > CONFIG.TOTAL_SPOTS) {
+        document.querySelector(".big-num").innerHTML = '<span style="font-size:56px;">Waitlist</span>';
+        document.getElementById("success-sub").textContent =
+          "All five founding spots are taken — you're on the waitlist. We'll reach out if a spot opens or invite you to the next cohort.";
+      }
+
+      document.getElementById("form-state").classList.add("hide");
+      document.getElementById("success-state").classList.add("show");
+      window.scrollTo({ top: document.querySelector(".form-card").offsetTop - 40, behavior: "smooth" });
+      track("form_success", { spot_number: newSpot, stylists: data.stylists });
+    } catch (err) {
+      console.error(err);
+      errEl.textContent = "Something went wrong. Please email mbonutv@gmail.com and we'll sort it.";
+      errEl.classList.add("show");
+      btn.disabled = false;
+      btn.textContent = btn.getAttribute("data-default-label") || "Reserve my spot for $1 →";
+      track("form_submit_error", { message: String(err && err.message || err) });
+    }
+  });
+
+  // Admin preview: ?spots=3 to preview state
+  const params = new URLSearchParams(window.location.search);
+  if (params.has("spots")) {
+    renderCounter(parseInt(params.get("spots"), 10) || 0);
+  }
+});
+</script>
+
+</body>
+</html>
