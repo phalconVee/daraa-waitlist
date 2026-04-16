@@ -88,7 +88,7 @@
         </select>
 
         <button type="submit" class="btn" id="submit-btn" data-default-label="Reserve my spot for $1 →">Reserve my spot for $1 →</button>
-        <p class="form-footer">No charge today — $1 is refundable until launch.</p>
+        <p class="form-footer">Payment is processed securely by Stripe, and your $1 deposit is refundable until launch.</p>
         <p class="error-msg" id="error-msg"></p>
       </form>
     </div>
@@ -256,6 +256,13 @@ const CONFIG = {
   // If left empty, form submissions are stored locally only (for testing).
   SUBMIT_URL: ENV.SUBMIT_URL || "",
 
+  // Stripe Payment Link for the $1 refundable deposit.
+  // Configure Stripe success URL to return to this page with ?paid=1
+  // (e.g. https://daraa.co/waitlist?paid=1), set cancel URL to ?canceled=1,
+  // and enable customer email collection so payments can be matched.
+  STRIPE_PAYMENT_LINK: ENV.STRIPE_PAYMENT_LINK || "", // e.g. https://buy.stripe.com/abc123
+  PAYMENT_REQUIRED: true, // set false to skip Stripe redirect in dev/QA
+
   // ---------- LIVE COUNTER ----------
   // Option A (simplest): set SPOTS_TAKEN manually. Each time a salon
   // deposits, edit this number and redeploy. Fine for a 5-spot pilot
@@ -338,6 +345,7 @@ const EXPERIMENTS = {
    ============================================================ */
 
 let currentCount = CONFIG.SPOTS_TAKEN;
+const PENDING_SIGNUP_KEY = "daraa_pending_signup";
 
 /* ---------- Analytics (PostHog loader) ---------- */
 function loadPostHog() {
@@ -444,6 +452,43 @@ function renderCounter(n) {
   }
 }
 
+function showSuccessState(newSpot, successText) {
+  if (typeof newSpot === "number") {
+    document.getElementById("spot-num").textContent = newSpot;
+  }
+
+  if (newSpot > CONFIG.TOTAL_SPOTS) {
+    document.querySelector(".big-num").innerHTML = '<span style="font-size:56px;">Waitlist</span>';
+    document.getElementById("success-sub").textContent =
+      "All five founding spots are taken — you're on the waitlist. We'll reach out if a spot opens or invite you to the next cohort.";
+  } else if (successText) {
+    document.getElementById("success-sub").textContent = successText;
+  }
+
+  document.getElementById("form-state").classList.add("hide");
+  document.getElementById("success-state").classList.add("show");
+  window.scrollTo({ top: document.querySelector(".form-card").offsetTop - 40, behavior: "smooth" });
+}
+
+function clearPaymentParams(params) {
+  params.delete("paid");
+  params.delete("canceled");
+  const clean = params.toString();
+  const nextUrl = clean ? (window.location.pathname + "?" + clean) : window.location.pathname;
+  window.history.replaceState({}, "", nextUrl);
+}
+
+function getStripeRedirectUrl(baseLink, email) {
+  try {
+    const url = new URL(baseLink);
+    url.searchParams.set("prefilled_email", email);
+    return url.toString();
+  } catch (e) {
+    const join = baseLink.includes("?") ? "&" : "?";
+    return baseLink + join + "prefilled_email=" + encodeURIComponent(email);
+  }
+}
+
 async function submitForm(data) {
   if (!CONFIG.SUBMIT_URL) {
     console.log("[dry-run] submission:", data);
@@ -466,6 +511,43 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const form = document.getElementById("waitlist-form");
   const errEl = document.getElementById("error-msg");
+  const params = new URLSearchParams(window.location.search);
+
+  if (params.get("paid") === "1") {
+    const pendingRaw = localStorage.getItem(PENDING_SIGNUP_KEY);
+    if (pendingRaw) {
+      try {
+        const pending = JSON.parse(pendingRaw);
+        const paidSpot = typeof pending.spot_number === "number"
+          ? pending.spot_number
+          : Math.min(currentCount + 1, CONFIG.TOTAL_SPOTS);
+        showSuccessState(paidSpot);
+        track("payment_succeeded", {
+          spot_number: paidSpot,
+          stylists: pending.stylists || null,
+          email: pending.email || null,
+          salon: pending.salon || null,
+        });
+      } catch (e) {
+        showSuccessState(Math.min(currentCount + 1, CONFIG.TOTAL_SPOTS),
+          "Thanks — we received your payment and your reservation is confirmed. We'll email you within 24 hours with next steps.");
+        track("payment_succeeded", { source: "paid_param_no_parse" });
+      }
+      localStorage.removeItem(PENDING_SIGNUP_KEY);
+    } else {
+      showSuccessState(Math.min(currentCount + 1, CONFIG.TOTAL_SPOTS),
+        "Thanks — we received your payment and your reservation is confirmed. We'll email you within 24 hours with next steps.");
+      track("payment_succeeded", { source: "paid_param_no_pending_signup" });
+    }
+    clearPaymentParams(params);
+  } else if (params.get("canceled") === "1") {
+    document.getElementById("form-state").classList.remove("hide");
+    document.getElementById("success-state").classList.remove("show");
+    errEl.textContent = "Payment wasn't completed — no problem, try again when you're ready.";
+    errEl.classList.add("show");
+    track("payment_canceled");
+    clearPaymentParams(params);
+  }
 
   // --- Event tracking: form-start (fires once, on first field focus) ---
   let formStarted = false;
@@ -530,17 +612,26 @@ document.addEventListener("DOMContentLoaded", async () => {
       // Optimistic local increment — real source of truth is CONFIG.SPOTS_TAKEN
       // or your live counter endpoint.
       const newSpot = Math.min(currentCount + 1, CONFIG.TOTAL_SPOTS);
-      document.getElementById("spot-num").textContent = newSpot;
+      const pendingSignup = {
+        salon: data.salon,
+        owner: data.owner,
+        email: data.email,
+        phone: data.phone,
+        stylists: data.stylists,
+        timestamp: data.timestamp,
+        spot_number: newSpot,
+        pending_at: new Date().toISOString(),
+      };
+      localStorage.setItem(PENDING_SIGNUP_KEY, JSON.stringify(pendingSignup));
 
-      if (newSpot > CONFIG.TOTAL_SPOTS) {
-        document.querySelector(".big-num").innerHTML = '<span style="font-size:56px;">Waitlist</span>';
-        document.getElementById("success-sub").textContent =
-          "All five founding spots are taken — you're on the waitlist. We'll reach out if a spot opens or invite you to the next cohort.";
+      if (CONFIG.PAYMENT_REQUIRED && CONFIG.STRIPE_PAYMENT_LINK) {
+        btn.textContent = "Redirecting to secure checkout…";
+        track("redirect_to_payment", { spot_number: newSpot, stylists: data.stylists });
+        window.location.href = getStripeRedirectUrl(CONFIG.STRIPE_PAYMENT_LINK, data.email);
+        return;
       }
 
-      document.getElementById("form-state").classList.add("hide");
-      document.getElementById("success-state").classList.add("show");
-      window.scrollTo({ top: document.querySelector(".form-card").offsetTop - 40, behavior: "smooth" });
+      showSuccessState(newSpot);
       track("form_success", { spot_number: newSpot, stylists: data.stylists });
     } catch (err) {
       console.error(err);
@@ -553,7 +644,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   // Admin preview: ?spots=3 to preview state
-  const params = new URLSearchParams(window.location.search);
   if (params.has("spots")) {
     renderCounter(parseInt(params.get("spots"), 10) || 0);
   }
